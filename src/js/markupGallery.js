@@ -1,0 +1,36 @@
+const gallery = document.querySelector(".gallery")
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+import SimpleLightbox from 'simplelightbox';
+import "simplelightbox/dist/simple-lightbox.min.css";
+
+
+
+export function markupGallery(photos) {
+  // console.log(photos.totalHits);
+ 
+  //   const { webformatURL, largeImageURL, tags, likes, views, comments, downloads } = photos;
+
+    const markup = photos.hits.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads })=> `<div class="photo-card"><a href="${largeImageURL}">
+    <img class="photo-list" src="${webformatURL}" alt="${tags}" loading="lazy" /></a>
+    <div class="info">
+    <p class="info-item">
+    <b>Likes ${likes}</b>
+    </p>
+    <p class="info-item">
+    <b>Views ${views}</b>
+    </p>
+    <p class="info-item">
+    <b>Comments ${comments}</b>
+    </p>
+    <p class="info-item">
+    <b>Downloads ${downloads}</b>
+    </p>
+    </div>
+    </div>`).join("")
+  
+    Notify.success(`Hooray! We found ${photos.totalHits} images.`) 
+    gallery.insertAdjacentHTML("beforeend",markup)
+    new SimpleLightbox('.gallery div a', { captionDelay: 250, captionsData: "alt" })
+//  gallery.innerHTML=markup
+}
