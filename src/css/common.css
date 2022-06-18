@@ -115,3 +115,15 @@ button{
   height: 100%;
 }
 
+.arrow{
+  position: fixed;
+  bottom: 10%;
+  left: 90%
+}
+.arrow-top{
+  transform: rotate(270deg);
+  position: relative;
+}
+.arrow-top:hover{
+fill: #b73333;
+}

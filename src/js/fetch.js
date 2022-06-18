@@ -1,8 +1,8 @@
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '27996406-97aa9c49a494d96b999a7c23c';
-import * as axios from 'axios';
+const axios = require('axios');
 
-export function fetchImg(inputValue,page) {
+export async function fetchImg(inputValue,page) {
  const searchParams = new URLSearchParams({
     key: API_KEY,
     q:inputValue,
@@ -14,9 +14,24 @@ export function fetchImg(inputValue,page) {
  }) 
 
    const url = `${BASE_URL}?${searchParams}`
+try {
+  
+   const response = await axios.get(url)
+   const res= await response.data
+   return res  
+} catch (error) {
+   console.log(error);
+}
+      
    
-   return fetch(url)
-      .then(res => res.json())
+
+//   return axios.get(url)
+//   .then(res => res.data)
+//       .catch(error => console.log(error))
+   
+   
+   // return fetch(url)
+   //    .then(res => res.json())
   
 }
 
