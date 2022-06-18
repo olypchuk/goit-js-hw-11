@@ -40,6 +40,7 @@ export function conditions(data) {
 
   if (data.hits.length === 0) {
     Notify.failure("We're sorry, but you've reached the end of search results.")
+    loadMoreBtn.classList.add('is-hide')
     return
   }
   markupGallery(data)
