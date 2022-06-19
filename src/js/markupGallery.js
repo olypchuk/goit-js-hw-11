@@ -33,15 +33,16 @@ export function conditions(data) {
  if (gallery.children.length===0) {
    Notify.success(`Hooray! We found ${data.totalHits} images.`) 
    gallery.innerHTML = ""
-   loadMoreBtn.classList.add('is-hide')
+  //  loadMoreBtn.classList.add('is-hide')
    arrowUp.classList.remove("is-hide")
-    buttonDelay()
+   // buttonDelay()
+   loadMoreBtn.classList.remove('is-hide')
   }
-
-  if (data.hits.length === 0) {
+console.log(data.hits.length);
+  if (data.hits.length<40) {
     Notify.failure("We're sorry, but you've reached the end of search results.")
     loadMoreBtn.classList.add('is-hide')
-    return
+    // return
   }
   markupGallery(data)
 }
